@@ -1,0 +1,23 @@
+{
+  "name": "@repetere/mongo-atlas",
+  "version": "0.0.0-alpha.0",
+  "description": "mongo atlas integrations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/repetere/mongo-atlas.git"
+  },
+  "keywords": [
+    "mongo",
+    "atlas"
+  ],
+  "author": "Jan Bialostok",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/repetere/mongo-atlas/issues"
+  },
+  "homepage": "https://github.com/repetere/mongo-atlas#readme"
+}
