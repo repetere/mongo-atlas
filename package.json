@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/repetere/mongo-atlas/issues"
   },
-  "homepage": "https://github.com/repetere/mongo-atlas#readme"
+  "homepage": "https://github.com/repetere/mongo-atlas#readme",
+  "dependencies": {
+    "node-fetch": "^2.3.0"
+  }
 }
