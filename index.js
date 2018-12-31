@@ -1,4 +1,7 @@
 
+const querystring = require('querystring');
+const util = require('util');
+
 const {
   request,
   factories,
@@ -6,16 +9,16 @@ const {
 
 class MongoAtlas {
   constructor(user, apikey) {
-    this.user = user;
+    this.user = querystring.escape(user);
     this.apikey = apikey;
   }
   async request(url, method, body, headers) {
-    return await request(url, {
+    return await request(util.format(url, `${this.user}:${this.apikey}`), {
       method,
       body: (body) ? JSON.stringify(body) : undefined,
       headers: Object.assign({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${Buffer.from(this.user + ':' + this.apikey).toString('base64')}`,
+        'Accept': 'application/json',
       }, headers),
     });
   }
