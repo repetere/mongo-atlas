@@ -1,19 +1,17 @@
 
-const querystring = require('querystring');
-const util = require('util');
-
 const {
-  request,
+  DigestClient,
   factories,
 } = require('./lib');
 
-class MongoAtlas {
+const ALGORITHM = 'MD5';
+
+class MongoAtlas extends DigestClient {
   constructor(user, apikey) {
-    this.user = querystring.escape(user);
-    this.apikey = apikey;
+    super(user, apikey, { algorithm: ALGORITHM, });
   }
   async request(url, method, body, headers) {
-    return await request(util.format(url, `${this.user}:${this.apikey}`), {
+    const response = await super.fetch(url, {
       method,
       body: (body) ? JSON.stringify(body) : undefined,
       headers: Object.assign({
@@ -21,6 +19,10 @@ class MongoAtlas {
         'Accept': 'application/json',
       }, headers),
     });
+    if (!response.ok) {
+      throw new Error(`mongo atlas responded with an error ${response.status}: "${response.statusText}"`);
+    }
+    return await response.json();
   }
 }
 
